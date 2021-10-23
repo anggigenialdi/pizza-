@@ -20,7 +20,7 @@ class CreatePizzasTable extends Migration
             $table->integer('small_pizza_price');
             $table->integer('medium_pizza_price');
             $table->integer('large_pizza_price');
-            $table->string('category');
+            $table->enum('category', ['vegetarian', 'nonvegetarian','traditional']);
             $table->string('image');
             $table->timestamps();
         });

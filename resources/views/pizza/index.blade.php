@@ -28,6 +28,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            @if (count($pizzas)>0)
                                 @foreach ($pizzas as $key=> $pizza )                                        
                                     <tr>
                                         <th scope="row">{{ $key+1 }}</th>
@@ -38,10 +39,35 @@
                                         <td>{{$pizza->small_pizza_price}}</td>
                                         <td>{{$pizza->medium_pizza_price}}</td>
                                         <td>{{$pizza->large_pizza_price}}</td>
-                                        <td></td>
+                                        <td>
+                                        <a href="{{ route('pizza.edit', $pizza->id) }}">
+                                            <button
+                                                type="submit"
+                                                class="btn btn-primary badge bi bi-x"
+                                                title="Edit">
+                                            Edit
+                                            </button>
+                                        </a>
+                                        <form
+                                            action="?_method=DELETE"
+                                            method="POST"
+                                            class="d-inline">
+                                            <!-- send id user for request method delete -->
+                                            <input type="hidden" name="_id" value="" />
+                                            <button
+                                                type="submit"
+                                                class="btn btn-danger badge bi bi-x"
+                                                onclick="return confirm('Are you sure to delete this data?')"
+                                                title="Delete">
+                                            Delete
+                                            </button>
+                                        </form>
+                                        </td>
                                     </tr>
                                 @endforeach
-
+                            @else
+                                <p>No pizza to show</p>
+                            @endif
                             </tbody>
                         </table>
                     </div>
